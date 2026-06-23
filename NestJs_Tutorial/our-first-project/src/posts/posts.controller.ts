@@ -1,11 +1,10 @@
-import { Controller, Get, Req, Headers, Post, Body} from '@nestjs/common';
+import { Controller, Get, Req, Headers, Post, Body } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import type { Request } from 'express';
 
 @Controller('posts')
 export class PostsController {
-  constructor(private readonly postsService: PostsService) {
-  }
+  constructor(private readonly postsService: PostsService) {}
 
   // @Get()
   // getFullReq(@Req() req:Request)
@@ -15,16 +14,17 @@ export class PostsController {
   // }
 
   @Get()
-  getReqHeaders(@Headers() header:any)
-  {
+  getReqHeaders(@Headers() header: any) {
     console.log(header);
-    
   }
 
   @Post()
-  createPost(@Body() posts:any)
-  {
+  createPost(@Body() posts: any) {
     return this.postsService.createPost(posts);
   }
 
+  @Get('userWithMostPosts')
+  getUserWithMostPosts() {
+    return this.postsService.getUserWithMostPosts();
+  }
 }

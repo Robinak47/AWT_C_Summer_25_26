@@ -1,7 +1,8 @@
-import { Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Query, Body, Post, ValidationPipe, Delete } from '@nestjs/common';
+import { Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Query, Body, Post, ValidationPipe, Delete, Put, Patch } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUsersDto } from './dtos/create-user-dto';
 import { ParamDto } from './dtos/param-dto';
+import { UpdateUsersDto } from './dtos/update-users-dto';
 
 @Controller('users')
 export class UsersController {
@@ -32,5 +33,17 @@ export class UsersController {
   deleteUser(@Param()  paramDto:ParamDto)
   {
     return `user deleted with id ${paramDto.id} `;
+  }
+
+  @Put(":id")
+  updateUser(@Param() updateUsersDto:UpdateUsersDto)
+  {
+    return "user fully updated";
+  }
+
+  @Patch(":id")
+  updateUserPartially(@Param() updateUsersDto:UpdateUsersDto)
+  {
+    return "user Partially  updated";
   }
 }

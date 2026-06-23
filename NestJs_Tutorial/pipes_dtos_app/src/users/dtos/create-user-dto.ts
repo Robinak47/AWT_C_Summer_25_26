@@ -1,8 +1,10 @@
 
+import { Type } from "class-transformer";
 import { IsEmail, IsNotEmpty, IsNumber, IsString, Matches, MaxLength, MinLength } from "class-validator";
 
 export class CreateUsersDto
 {
+    @Type(()=>Number)
     @IsNumber()
     @IsNotEmpty()
     id:number;
